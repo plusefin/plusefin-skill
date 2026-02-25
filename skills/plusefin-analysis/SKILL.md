@@ -1,6 +1,6 @@
 ---
 name: plusefin-analysis
-description: AI-ready stock analysis - ticker data, options, sentiment, predictions. Free tier available!
+description: AI-ready stock analysis - ticker data, options, sentiment, predictions. Get your free API key at https://plusefin.com
 metadata:
   {
     "openclaw":
