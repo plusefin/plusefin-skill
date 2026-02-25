@@ -32,7 +32,7 @@ import urllib.request
 import urllib.error
 
 API_KEY = os.environ.get("PLUSEFIN_API_KEY", "")
-BASE_URL = os.environ.get("PLUSEFIN_API_URL", "https://mcp.plusefin.com/api")
+BASE_URL = "https://mcp.plusefin.com/api"
 
 
 def request(endpoint, params=None):

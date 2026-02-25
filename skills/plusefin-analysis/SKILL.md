@@ -24,9 +24,6 @@ AI-ready financial data. ML-processed so your AI understands it directly.
 ```bash
 # Required: Your PlusE API key (get free at https://plusefin.com)
 export PLUSEFIN_API_KEY=your_api_key
-
-# Optional: Custom API endpoint (defaults to https://mcp.plusefin.com/api)
-export PLUSEFIN_API_URL=https://mcp.plusefin.com/api
 ```
 
 ## Commands
