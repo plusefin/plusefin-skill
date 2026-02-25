@@ -32,7 +32,7 @@ import urllib.request
 import urllib.error
 
 API_KEY = os.environ.get("PLUSEFIN_API_KEY", "")
-BASE_URL = "https://mcp.plusefin.com/api"
+BASE_URL = os.environ.get("PLUSEFIN_API_URL", "https://mcp.plusefin.com/api")
 
 
 def request(endpoint, params=None):
@@ -43,6 +43,7 @@ def request(endpoint, params=None):
             url += "?" + query
     
     req = urllib.request.Request(url)
+    req.add_header("User-Agent", "Python/urllib")
     if API_KEY:
         req.add_header("Authorization", f"Bearer {API_KEY}")
     else:
