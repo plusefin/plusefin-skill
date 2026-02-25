@@ -1,44 +1,36 @@
 # PlusE Financial Analysis Skill
 
-A comprehensive financial analysis skill for OpenClaw that provides access to PlusE financial data API.
+让 AI 帮你分析股票、期权、市场情绪。
 
-## Features
+## 为什么用这个？
 
-- **Stock Data**: Company overview, price history, financial statements, earnings
-- **Options**: Options chain, Greeks, volatility analysis
-- **Holdings**: Institutional holders, top 25 positions, insider trading
-- **Market Sentiment**: Fear & Greed index, historical sentiment, trends
-- **Predictions**: Price predictions using ML models
-- **Macro Data**: FRED economic indicators
-- **News**: Market news and social media discussions
+传统金融 API 返回一堆原始 JSON，AI 处理起来又慢又费 token。PlusE 的数据经过 ML 预处理，AI 直接能懂。
 
-## Installation
+- **80% token 减少** - 数据已经整理好，不用 AI 自己解析
+- **90% 更快** - 不用处理 150KB 的原始数据
+- **50% 更准** - ML 过滤噪音信号
 
-### Via ClawHub (Recommended)
+## 安装
+
+### 从 ClawHub 安装（推荐）
 
 ```bash
-# Install ClawHub CLI
 npm i -g clawhub
-
-# Install the skill
 clawhub install plusefin-analysis
 ```
 
-### Manual Installation
+### 手动安装
 
-Copy the `plusefin-analysis` folder to your skills directory:
-- Workspace: `<workspace>/skills/`
-- Global: `~/.openclaw/skills/`
+复制 `plusefin-analysis` 文件夹到你的 skills 目录。
 
-## Configuration
-
-Set your PlusE API key:
+## 配置
 
 ```bash
+# 设置 API Key
 export PLUSEFIN_API_KEY=your_api_key
 ```
 
-Or configure in `~/.openclaw/openclaw.json`:
+或在 `~/.openclaw/openclaw.json` 中配置：
 
 ```json
 {
@@ -46,57 +38,48 @@ Or configure in `~/.openclaw/openclaw.json`:
     "entries": {
       "plusefin-analysis": {
         "enabled": true,
-        "apiKey": "your_api_key",
-        "env": {
-          "PLUSEFIN_API_KEY": "your_api_key"
-        }
+        "apiKey": "your_api_key"
       }
     }
   }
 }
 ```
 
-Get your API key at [console.plusefin.com](https://console.plusefin.com).
+**免费获取 API Key**：[console.plusefin.com](https://console.plusefin.com) - 无需信用卡
 
-## Usage
+## 能做什么
 
-The skill provides a Python CLI that can be called via the exec tool:
+| 功能 | 命令 | 例子 |
+|------|------|------|
+| 股票概况 | `ticker` | `python {baseDir}/plusefin.py ticker AAPL` |
+| 历史价格 | `price-history` | `python {baseDir}/plusefin.py price-history NVDA 1y` |
+| 期权链 | `options` | `python {baseDir}/plusefin.py options TSLA 20` |
+| 财务报表 | `statements` | `python {baseDir}/plusefin.py statements AAPL income` |
+| 财报历史 | `earnings` | `python {baseDir}/plusefin.py earnings NVDA` |
+| 市场情绪 | `sentiment` | `python {baseDir}/plusefin.py sentiment` |
+| 价格预测 | `prediction` | `python {baseDir}/plusefin.py prediction AAPL` |
+| 经济数据 | `fred` | `python {baseDir}/plusefin.py fred GDP` |
+| 内幕交易 | `insiders` | `python {baseDir}/plusefin.py insiders NVDA` |
 
-```bash
-# Get stock ticker data
-python {baseDir}/plusefin.py ticker AAPL
+## 定价
 
-# Get price history
-python {baseDir}/plusefin.py price-history NVDA 1y
+| 方案 | 价格 | 说明 |
+|------|------|------|
+| **Trial** | **免费** | 数百次调用/月，无需信用卡 |
+| Flex | $9.9/750 credits | 按需付费 |
+| Trader | $39.9/月 | 高频交易者 |
 
-# Get options chain
-python {baseDir}/plusefin.py options TSLA 20
+## 链接
 
-# Get market sentiment
-python {baseDir}/plusefin.py sentiment
-```
+- [ClawHub 页面](https://clawhub.ai/skills/plusefin-analysis)
+- [GitHub](https://github.com/plusefin/plusefin-skill)
+- [API 文档](https://mcp.plusefin.com/api/docs)
+- [PlusE 官网](https://plusefin.com)
 
-## Available Commands
-
-| Category | Commands |
-|----------|----------|
-| Stock Data | `ticker`, `price-history`, `statements`, `earnings`, `news` |
-| Holdings | `holders`, `top25`, `insiders` |
-| Options | `options`, `options-analyze` |
-| Sentiment | `sentiment`, `sentiment-history`, `sentiment-trend` |
-| Predictions | `prediction` |
-| Macro | `fred`, `fred-search` |
-| News | `news-market`, `news-social` |
-
-## Requirements
+## 要求
 
 - Python 3.x
-- `PLUSEFIN_API_KEY` environment variable
-
-## API Documentation
-
-- Full API docs: https://mcp.plusefin.com/api/docs
-- PlusE documentation: https://plusefin.com/docs/api/
+- PlusE API Key（免费）
 
 ## License
 

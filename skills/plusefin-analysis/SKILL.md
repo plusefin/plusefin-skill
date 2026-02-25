@@ -1,12 +1,12 @@
 ---
 name: plusefin-analysis
-description: Comprehensive financial analysis using PlusE API - stocks, ETFs, options, macro data, and market sentiment
+description: AI-ready stock analysis - ticker data, options, sentiment, predictions. Free tier available!
 metadata:
   {
     "openclaw":
       {
         "emoji": "📈",
-        "homepage": "https://plusefin.com/docs/api/",
+        "homepage": "https://github.com/plusefin/plusefin-skill",
         "requires": { "bins": ["python3"], "env": ["PLUSEFIN_API_KEY"] },
         "primaryEnv": "PLUSEFIN_API_KEY"
       }
@@ -15,175 +15,116 @@ metadata:
 
 # PlusE Financial Analysis
 
-Access PlusE financial data API for comprehensive stock analysis, ETF holdings, options data, market sentiment, and macroeconomic indicators.
+让 AI 帮你分析股票、期权、市场情绪。数据经过 ML 预处理，AI 直接能懂，不用你自己整理。
 
-## Setup
+**免费额度**：注册就送数百次调用/月，无需信用卡。[立即注册 →](https://console.plusefin.com)
 
-Set your PlusE API key as an environment variable:
+## 快速开始
 
 ```bash
+# 1. 设置 API Key
 export PLUSEFIN_API_KEY=your_api_key
+
+# 2. 开始分析
+python {baseDir}/plusefin.py ticker AAPL
 ```
 
-Get your API key at [console.plusefin.com](https://console.plusefin.com).
+## 能做什么
 
-## Available Commands
+### 股票分析
 
-### Stock Data
+| 命令 | 干什么 | 例子 |
+|------|--------|------|
+| `ticker` | 公司概况、估值、分析师评级 | `python {baseDir}/plusefin.py ticker AAPL` |
+| `price-history` | 历史价格 + 技术指标信号 | `python {baseDir}/plusefin.py price-history NVDA 1y` |
+| `statements` | 财务报表（利润表/资产负债表/现金流量表） | `python {baseDir}/plusefin.py statements AAPL income` |
+| `earnings` | 财报历史，超预期还是不及预期 | `python {baseDir}/plusefin.py earnings NVDA` |
+| `news` | 相关新闻 | `python {baseDir}/plusefin.py news TSLA` |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `ticker` | Company overview and key metrics | `python {baseDir}/plusefin.py ticker AAPL` |
-| `price-history` | Historical price data | `python {baseDir}/plusefin.py price-history NVDA 1y` |
-| `statements` | Financial statements | `python {baseDir}/plusefin.py statements AAPL income` |
-| `earnings` | Earnings history and surprises | `python {baseDir}/plusefin.py earnings NVDA` |
-| `news` | Stock-related news | `python {baseDir}/plusefin.py news TSLA` |
+### 期权分析
 
-### Holdings & Ownership
+| 命令 | 干什么 | 例子 |
+|------|--------|------|
+| `options` | 期权链数据 | `python {baseDir}/plusefin.py options TSLA 20` |
+| `options-analyze` | 期权分析 | `python {baseDir}/plusefin.py options-analyze AAPL` |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `holders` | Institutional holders | `python {baseDir}/plusefin.py holders SPY` |
-| `top25` | Top 25 holders | `python {baseDir}/plusefin.py top25 AAPL` |
-| `insiders` | Insider trading activity | `python {baseDir}/plusefin.py insiders NVDA` |
+### 市场情绪
 
-### Options
+| 命令 | 干什么 | 例子 |
+|------|--------|------|
+| `sentiment` | 当前市场恐慌/贪婪指数 | `python {baseDir}/plusefin.py sentiment` |
+| `sentiment-history` | 历史情绪数据 | `python {baseDir}/plusefin.py sentiment-history 10` |
+| `sentiment-trend` | 情绪趋势分析 | `python {baseDir}/plusefin.py sentiment-trend 10` |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `options` | Options chain data | `python {baseDir}/plusefin.py options TSLA 20` |
-| `options-analyze` | Options analysis | `python {baseDir}/plusefin.py options-analyze AAPL` |
+### 预测 & 宏观
 
-### Market Sentiment
+| 命令 | 干什么 | 例子 |
+|------|--------|------|
+| `prediction` | ML 价格预测 | `python {baseDir}/plusefin.py prediction AAPL` |
+| `fred` | 美联储经济数据（GDP、失业率等） | `python {baseDir}/plusefin.py fred GDP` |
+| `fred-search` | 搜索经济指标 | `python {baseDir}/plusefin.py fred-search unemployment` |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `sentiment` | Current market sentiment | `python {baseDir}/plusefin.py sentiment` |
-| `sentiment-history` | Historical sentiment | `python {baseDir}/plusefin.py sentiment-history 10` |
-| `sentiment-trend` | Sentiment trend analysis | `python {baseDir}/plusefin.py sentiment-trend 10` |
+### 持仓 & 内幕
 
-### Predictions & Analysis
+| 命令 | 干什么 | 例子 |
+|------|--------|------|
+| `holders` | 机构持仓 | `python {baseDir}/plusefin.py holders SPY` |
+| `top25` | 前25大持仓 | `python {baseDir}/plusefin.py top25 AAPL` |
+| `insiders` | 内幕交易 | `python {baseDir}/plusefin.py insiders NVDA` |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `prediction` | Price prediction | `python {baseDir}/plusefin.py prediction AAPL` |
+## 使用场景
 
-### Macro Data
-
-| Command | Description | Example |
-|---------|-------------|---------|
-| `fred` | FRED economic data | `python {baseDir}/plusefin.py fred GDP` |
-| `fred-search` | Search FRED series | `python {baseDir}/plusefin.py fred-search unemployment` |
-
-### Market News
-
-| Command | Description | Example |
-|---------|-------------|---------|
-| `news-market` | CNBC market news | `python {baseDir}/plusefin.py news-market` |
-| `news-social` | Social media discussions | `python {baseDir}/plusefin.py news-social tsla,nvda` |
-
-## Analysis Workflows
-
-### Comprehensive Stock Analysis
+### 深度分析一只股票
 
 ```
-1. Get company overview:
-   python {baseDir}/plusefin.py ticker AAPL
-
-2. Check earnings history:
-   python {baseDir}/plusefin.py earnings AAPL
-
-3. Review financial statements:
-   python {baseDir}/plusefin.py statements AAPL income
-
-4. Get recent news:
-   python {baseDir}/plusefin.py news AAPL
-
-5. Check institutional ownership:
-   python {baseDir}/plusefin.py holders AAPL
-
-6. Summarize with investment thesis
+1. 公司概况：python {baseDir}/plusefin.py ticker AAPL
+2. 看财报：python {baseDir}/plusefin.py earnings AAPL
+3. 看财务报表：python {baseDir}/plusefin.py statements AAPL income
+4. 看新闻：python {baseDir}/plusefin.py news AAPL
+5. 综合分析，给出投资建议
 ```
 
-### Options Trading Analysis
+### 期权交易分析
 
 ```
-1. Get current stock data:
-   python {baseDir}/plusefin.py ticker TSLA
-
-2. Get options chain:
-   python {baseDir}/plusefin.py options TSLA 20
-
-3. Run options analysis:
-   python {baseDir}/plusefin.py options-analyze TSLA
-
-4. Analyze Greeks, IV, and optimal strikes
+1. 当前股价：python {baseDir}/plusefin.py ticker TSLA
+2. 期权链：python {baseDir}/plusefin.py options TSLA 20
+3. 分析 Greeks 和隐含波动率
 ```
 
-### Market Overview
+### 大盘情绪
 
 ```
-1. Check market sentiment:
-   python {baseDir}/plusefin.py sentiment
-
-2. Get market news:
-   python {baseDir}/plusefin.py news-market
-
-3. Check key economic indicators:
-   python {baseDir}/plusefin.py fred GDP
-   python {baseDir}/plusefin.py fred UNRATE
-
-4. Summarize market conditions
+1. 市场情绪：python {baseDir}/plusefin.py sentiment
+2. 宏观数据：python {baseDir}/plusefin.py fred GDP
+3. 综合判断市场环境
 ```
 
-### ETF Analysis
+## 参数说明
 
-```
-1. Get ETF overview:
-   python {baseDir}/plusefin.py ticker SPY
+- `price-history`: period 支持 `1mo`, `3mo`, `6mo`, `1y`, `2y`, `5y`
+- `options`: num 是返回的期权数量，默认 20
+- `statements`: type 支持 `income`, `balance`, `cash`；frequency 支持 `quarterly`, `annual`
+- `sentiment-history/trend`: days 是天数，默认 10
 
-2. Check holdings:
-   python {baseDir}/plusefin.py holders SPY
+## 获取 API Key
 
-3. Get top positions:
-   python {baseDir}/plusefin.py top25 SPY
+1. 访问 [console.plusefin.com](https://console.plusefin.com)
+2. 注册账号（免费）
+3. 复制 API Key
+4. 设置环境变量：`export PLUSEFIN_API_KEY=your_key`
 
-4. Analyze sector allocation and risk
-```
+## 定价
 
-## Parameters Reference
+| 方案 | 价格 | 说明 |
+|------|------|------|
+| **Trial** | **免费** | 数百次调用/月，无需信用卡 |
+| Flex | $9.9/750 credits | 按需付费 |
+| Trader | $39.9/月 | 高频交易者 |
 
-### price-history
-- `ticker`: Stock symbol (required)
-- `period`: Time period - "1mo", "3mo", "6mo", "1y", "2y", "5y" (default: "6mo")
+## 链接
 
-### options
-- `symbol`: Stock symbol (required)
-- `num`: Number of options to return (default: 20)
-
-### statements
-- `symbol`: Stock symbol (required)
-- `type`: Statement type - "income", "balance", "cash" (default: "income")
-- `frequency`: "quarterly" or "annual" (default: "quarterly")
-
-### sentiment-history / sentiment-trend
-- `days`: Number of days (default: 10)
-
-### fred-search
-- `query`: Search term (required)
-
-### news-social
-- `keywords`: Comma-separated keywords (required)
-
-## Error Handling
-
-If you see "Error: PLUSEFIN_API_KEY environment variable not set", make sure to export your API key first.
-
-For HTTP errors, check that:
-- Your API key is valid
-- The symbol/series_id exists
-- You have sufficient API quota
-
-## API Documentation
-
-Full API documentation: https://mcp.plusefin.com/api/docs
+- [GitHub](https://github.com/plusefin/plusefin-skill)
+- [ClawHub](https://clawhub.ai/skills/plusefin-analysis)
+- [API 文档](https://mcp.plusefin.com/api/docs)
+- [PlusE 官网](https://plusefin.com)
