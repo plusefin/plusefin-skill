@@ -65,19 +65,29 @@ Structured output:
 
 Each key conclusion must include source citations.
 
+## Usage
+
+```bash
+# Set API key
+export PLUSEFIN_API_KEY=your_api_key
+
+# Run commands
+python plusefin.py <command> [args]
+```
+
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `ticker` | Company overview, valuation, ratings |
-| `price-history` | Historical prices and signals |
-| `sentiment` | Market sentiment (Fear & Greed) |
-| `sentiment-history` | Historical sentiment data |
-| `options` | Options chain |
-| `options-analyze` | Options analysis |
-| `holders` | Institutional holdings |
-| `statements` | Financial statements |
-| `earnings` | Earnings history |
-| `insiders` | Insider trading |
-| `news` | Stock news |
-| `fred` | Macroeconomic data |
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `ticker` | `python plusefin.py ticker <symbol>` | Company overview, valuation, ratings |
+| `price-history` | `python plusefin.py price-history <ticker> [period]` | Historical prices (6mo/1y/2y) |
+| `sentiment` | `python plusefin.py sentiment` | Market sentiment (Fear & Greed) |
+| `sentiment-history` | `python plusefin.py sentiment-history [days]` | Historical sentiment |
+| `options` | `python plusefin.py options <symbol> [num]` | Options chain |
+| `options-analyze` | `python plusefin.py options-analyze <symbol>` | Options analysis |
+| `holders` | `python plusefin.py holders <symbol>` | Institutional holdings |
+| `statements` | `python plusefin.py statements <symbol> [type]` | Financial statements (income/balance/cash) |
+| `earnings` | `python plusefin.py earnings <symbol>` | Earnings history |
+| `insiders` | `python plusefin.py insiders <symbol>` | Insider trading |
+| `news` | `python plusefin.py news <symbol>` | Stock news |
+| `fred` | `python plusefin.py fred <series_id>` | Macroeconomic data |
