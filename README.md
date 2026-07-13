@@ -10,6 +10,16 @@ Traditional financial APIs return massive raw JSON that's slow and expensive for
 - **90% faster** - No 150KB raw data to process
 - **50% more accurate** - ML filters out noise
 
+## Cross-Platform Compatibility
+
+This skill works on all major AI coding agents:
+
+| Platform | Skill Location | Method |
+|----------|---------------|--------|
+| **Claude Code** | `.claude/skills/plusefin-analysis/` | MCP or CLI |
+| **OpenCode** | `.opencode/skills/plusefin-analysis/` | MCP or CLI |
+| **Codex CLI** | `.agents/skills/plusefin-analysis/` | CLI or curl |
+
 ## Installation
 
 ### From ClawHub (Recommended)
@@ -19,9 +29,20 @@ npm i -g clawhub
 clawhub install plusefin-analysis
 ```
 
-### Manual
+### Manual (Cross-Platform)
 
-Copy the `plusefin-analysis` folder to your skills directory.
+Choose your platform's location:
+
+```bash
+# For Claude Code
+cp -r skills/plusefin-analysis .claude/skills/
+
+# For OpenCode
+cp -r skills/plusefin-analysis .opencode/skills/
+
+# For Codex CLI (also works with Claude/OpenCode)
+cp -r skills/plusefin-analysis .agents/skills/
+```
 
 ## Configuration
 
@@ -46,19 +67,29 @@ Or in `~/.openclaw/openclaw.json`:
 
 **Get your free API key**: [console.plusefin.com](https://console.plusefin.com) - No credit card required
 
-## Features
+## Quick Start
 
-| Feature | Command | Example |
-|---------|---------|---------|
-| Stock overview | `ticker` | `python {baseDir}/plusefin.py ticker AAPL` |
-| Price history | `price-history` | `python {baseDir}/plusefin.py price-history NVDA 1y` |
-| Options chain | `options` | `python {baseDir}/plusefin.py options TSLA 20` |
-| Financial statements | `statements` | `python {baseDir}/plusefin.py statements AAPL income` |
-| Earnings history | `earnings` | `python {baseDir}/plusefin.py earnings NVDA` |
-| Market sentiment | `sentiment` | `python {baseDir}/plusefin.py sentiment` |
-| Price prediction | `prediction` | `python {baseDir}/plusefin.py prediction AAPL` |
-| Economic data | `fred` | `python {baseDir}/plusefin.py fred GDP` |
-| Insider trading | `insiders` | `python {baseDir}/plusefin.py insiders NVDA` |
+```bash
+# CLI mode
+export PLUSEFIN_API_KEY=your_api_key
+python skills/plusefin-analysis/plusefin.py ticker AAPL
+
+# Or curl mode
+curl -s -H "Authorization: Bearer $PLUSEFIN_API_KEY" \
+  https://mcp.plusefin.com/api/tools/ticker/AAPL
+```
+
+## Available Data
+
+| Category | Commands |
+|----------|----------|
+| Company Fundamentals | `ticker`, `price-history`, `statements`, `earnings`, `news` |
+| Options | `options-analyze`, `options` |
+| Institutional Activity | `top25`, `holders`, `insiders` |
+| Market Sentiment | `sentiment`, `sentiment-history`, `sentiment-trend` |
+| Macro Data | `fred`, `fred-search` |
+| News | `news-market`, `news-social` |
+| Predictions | `prediction` |
 
 ## Pricing
 
@@ -70,7 +101,7 @@ Or in `~/.openclaw/openclaw.json`:
 
 ## Links
 
-- [ClawHub](https://clawhub.ai/skills/plusefin-analysis)
+- [ClawHub](https://clawskills.sh/skills/wanghsinche-plusefin-analysis)
 - [GitHub](https://github.com/plusefin/plusefin-skill)
 - [API Docs](https://mcp.plusefin.com/api/docs)
 - [PlusE Website](https://plusefin.com)
